@@ -57,3 +57,21 @@ print(upywraptest.Simple3(20).Value())
 
 print(upywraptest.IsNullPtr(None))
 print(upywraptest.IsNullSharedPtr(None))
+
+# Deriving from native class
+class Derived1(upywraptest.Simple):
+  def __init__(self, arg=0):
+    super().__init__(arg)
+
+  def Add(self, a):
+    return super().Add(a)
+
+class Derived2(Derived1):
+  def __init__(self, arg=0):
+    super().__init__(arg)
+
+derived1 = Derived1(0)
+derived1.Add(2)
+derived2 = Derived2()
+derived1.Plus(derived2)
+print(derived1.Value())
