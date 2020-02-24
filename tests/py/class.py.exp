@@ -11,6 +11,11 @@ False
 True
 False
 True
+__ne__
+False
+False
+False
+True
 0
 0.0
 z
@@ -23,3 +28,5 @@ TypeError
 True
 True
 2
+False
+True

@@ -24,6 +24,15 @@ print(simple1 == simple2)
 print(simple1 == simple1)
 print(hash(simple1) == hash(simple2))
 print(hash(simple1) == hash(simple1))
+# Since we do not use MP_TYPE_FLAG_EQ_CHECKS_OTHER_TYPE this is automatically false.
+# However if we would use that, forwarding __eq__ to Simple::operator == directly isn't
+# really conforming to Python since it would raise a TypeError trying to convert the rhs.
+# If you want something like that the correct way would be to have a wrapper function
+# like Eq(const Simple&, mp_obj_t rhs) and then manually check types etc.
+print(simple1 == upywraptest.NargsTest())
+print(simple1 == upywraptest.Simple(5))
+print(simple1 != upywraptest.Simple(5))
+print(simple1 == upywraptest.Simple(6))
 
 print(hasattr(simple1, 'Something'))
 print(hasattr(simple1, 'val'))
